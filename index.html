@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DNEasy Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav">
+      <div class="logo">DNEasy Quest</div>
+      <button id="start-adventure" class="primary">Start Adventure</button>
+    </nav>
+    <div class="hero-content">
+      <div>
+        <p class="eyebrow">Gamified DNS & Domain Registration</p>
+        <h1>Level up your internet superpowers.</h1>
+        <p>
+          Explore missions, collect badges, and master DNS concepts by building domains,
+          routing records, and keeping the web reachable.
+        </p>
+        <div class="hero-actions">
+          <button class="primary" id="earn-xp">Earn 50 XP</button>
+          <button class="ghost" id="view-badges">View Badges</button>
+        </div>
+      </div>
+      <div class="status-card">
+        <h2>Adventurer Stats</h2>
+        <div class="stat-row">
+          <span>Level</span>
+          <strong id="level">1</strong>
+        </div>
+        <div class="stat-row">
+          <span>XP</span>
+          <strong><span id="xp">0</span> / <span id="xp-goal">300</span></strong>
+        </div>
+        <div class="progress">
+          <div class="progress-fill" id="xp-bar"></div>
+        </div>
+        <div class="stat-row">
+          <span>Badges</span>
+          <strong id="badge-count">0</strong>
+        </div>
+        <div class="stat-row">
+          <span>Streak</span>
+          <strong id="streak">0 days</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="mission-board">
+      <div class="section-header">
+        <h2>Mission Board</h2>
+        <p>Complete quests to unlock new DNS powers.</p>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <h3>Map the DNS Journey</h3>
+          <p>Arrange the path from browser to authoritative name server.</p>
+          <ul class="tag-list">
+            <li>Resolver</li>
+            <li>Recursive</li>
+            <li>Authoritative</li>
+          </ul>
+          <button class="secondary mission-btn" data-xp="40">Launch Mission</button>
+        </article>
+        <article class="card">
+          <h3>Secure the Zone</h3>
+          <p>Choose the record that keeps email safe and SPF strong.</p>
+          <ul class="tag-list">
+            <li>TXT</li>
+            <li>SPF</li>
+            <li>DMARC</li>
+          </ul>
+          <button class="secondary mission-btn" data-xp="60">Launch Mission</button>
+        </article>
+        <article class="card">
+          <h3>Optimize the Cache</h3>
+          <p>Balance TTL for speed and agility in record updates.</p>
+          <ul class="tag-list">
+            <li>TTL</li>
+            <li>Latency</li>
+            <li>Propagation</li>
+          </ul>
+          <button class="secondary mission-btn" data-xp="45">Launch Mission</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="dns-lab">
+      <div class="section-header">
+        <h2>DNS Lab: Resolve the Record</h2>
+        <p>Match the request to the correct DNS record type.</p>
+      </div>
+      <div class="card lab">
+        <div class="lab-prompt">
+          <span class="label">Scenario</span>
+          <p id="lab-question">Loading...</p>
+        </div>
+        <div class="lab-options" id="lab-options"></div>
+        <div class="lab-footer">
+          <span id="lab-feedback">Pick the right record to win XP.</span>
+          <button class="ghost" id="next-lab">Next Challenge</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="domain-studio">
+      <div class="section-header">
+        <h2>Domain Studio</h2>
+        <p>Craft a domain, check availability, and register your idea.</p>
+      </div>
+      <div class="grid two">
+        <div class="card">
+          <label class="label">Name your project</label>
+          <input id="domain-name" type="text" placeholder="stellar-launch" />
+          <div class="suffixes">
+            <button class="chip" data-suffix=".com">.com</button>
+            <button class="chip" data-suffix=".io">.io</button>
+            <button class="chip" data-suffix=".dev">.dev</button>
+            <button class="chip" data-suffix=".space">.space</button>
+          </div>
+          <button class="secondary" id="check-domain">Check availability</button>
+          <p class="status" id="domain-status">Awaiting your brilliant idea.</p>
+        </div>
+        <div class="card">
+          <h3>Registrar Checklist</h3>
+          <ul class="checklist" id="registrar-list">
+            <li><input type="checkbox" /> Secure WHOIS privacy</li>
+            <li><input type="checkbox" /> Enable auto-renew</li>
+            <li><input type="checkbox" /> Add DNSSEC protection</li>
+            <li><input type="checkbox" /> Create first A record</li>
+          </ul>
+          <button class="primary" id="register-domain">Register Domain</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="quiz-zone">
+      <div class="section-header">
+        <h2>Quiz Zone</h2>
+        <p>Answer quickly to build a knowledge streak.</p>
+      </div>
+      <div class="card quiz">
+        <p class="label" id="quiz-progress">Question 1 of 4</p>
+        <h3 id="quiz-question">Loading...</h3>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="lab-footer">
+          <span id="quiz-feedback">Choose the best answer.</span>
+          <button class="ghost" id="next-quiz">Next Question</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="badge-vault">
+      <div class="section-header">
+        <h2>Badge Vault</h2>
+        <p>Collect achievements as you master DNS and registration.</p>
+      </div>
+      <div class="grid three" id="badge-grid">
+        <div class="badge locked">Resolver Rookie</div>
+        <div class="badge locked">Cache Commander</div>
+        <div class="badge locked">Zone Guardian</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Made for explorers learning the internet's address book.</p>
+  </footer>
+
+  <div class="toast" id="toast">XP gained!</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
